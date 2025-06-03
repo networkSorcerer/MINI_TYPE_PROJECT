@@ -4,7 +4,7 @@ import SearchWithKeywordPage from "./pages/SearchPage/SearchWithKeywordPage";
 import PlaylistDetailPage from "./pages/PlaylistPage/PlaylistDetailPage";
 import PlaylistPage from "./pages/PlaylistPage/PlaylistPage";
 import LoadingScreen from "./common/components/LoadingScreen";
-
+import "./App.css";
 const AppLayout = React.lazy(() => import("./layout/AppLayout"));
 const HomePage = React.lazy(() => import("./pages/HomePage/HopePage"));
 const SearchPage = React.lazy(() => import("./pages/SearchPage/SearchPage"));
@@ -17,7 +17,7 @@ const SearchPage = React.lazy(() => import("./pages/SearchPage/SearchPage"));
 
 function App() {
   return (
-    <Suspense fallback={<LoadingScreen/>}>
+    <Suspense fallback={<LoadingScreen />}>
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<HomePage />}></Route>
