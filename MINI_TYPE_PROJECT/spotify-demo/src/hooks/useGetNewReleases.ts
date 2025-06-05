@@ -5,7 +5,7 @@ import useClientCredentialToken from "./useClientCredentialToken";
 const useGetNewReleases = () => {
   const clientCredentialToken = useClientCredentialToken();
   return useQuery({
-    queryKey: ["new-release"],
+    queryKey: ["new-releases"],
     queryFn: async () => {
       if (!clientCredentialToken) {
         throw new Error("No token available");
