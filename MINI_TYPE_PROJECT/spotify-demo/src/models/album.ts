@@ -9,11 +9,11 @@ export interface getNewReleasesResponse {
     offset: number;
     previous: string | null;
     total: number;
-    items: SimplifiledAlbum[];
+    items: SimplifiedAlbum[];
   };
 }
 
-export interface SimplifiledAlbum {
+export interface SimplifiedAlbum {
   album_type: string;
   total_tracks: string;
   available_markets: string[];
