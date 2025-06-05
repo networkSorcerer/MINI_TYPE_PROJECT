@@ -15,7 +15,7 @@ export interface getNewReleasesResponse {
 
 export interface SimplifiedAlbum {
   album_type: string;
-  total_tracks: string;
+  total_tracks: number;
   available_markets: string[];
   external_urls: ExternalURLS;
   href: string;
@@ -26,6 +26,6 @@ export interface SimplifiedAlbum {
   release_date_precision: string;
   restrictions?: Restriction;
   type: string;
-  url: string;
+  uri: string;
   artists: Artist[];
 }
