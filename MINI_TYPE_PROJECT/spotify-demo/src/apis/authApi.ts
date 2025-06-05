@@ -1,19 +1,22 @@
 import axios from "axios";
 import { clientId, clientSecret } from "../configs/authConfig";
 import { ClientCredentialTokenResponse } from "../models/auth";
+// import { URLSearchParams } from "url";
 
-const encodeBase64 = (data: string): string => {
+const encodedBase64 = (data: string): string => {
+  // Buffer가 있는 환경과 없는 환경이 있기 때문에 이렇게 처리.
+
   if (typeof window !== "undefined") {
+    // 브라우저 환경
     return btoa(data);
   } else {
+    // Node.js 환경
     return Buffer.from(data).toString("base64");
   }
 };
+
 export const getClientCredentialToken =
   async (): Promise<ClientCredentialTokenResponse> => {
-    console.log("clientId:", clientId);
-    console.log("clientSecret:", clientSecret);
-
     try {
       const body = new URLSearchParams({
         grant_type: "client_credentials",
@@ -23,7 +26,7 @@ export const getClientCredentialToken =
         body,
         {
           headers: {
-            Authorization: `Basic ${encodeBase64(
+            Authorization: `Basic ${encodedBase64(
               clientId + ":" + clientSecret
             )}`,
             "Content-Type": "application/x-www-form-urlencoded",
@@ -32,6 +35,6 @@ export const getClientCredentialToken =
       );
       return response.data;
     } catch (error) {
-      throw new Error("Fail to fetch client credential token");
+      throw new Error("Failed to fetch client credential token.");
     }
   };

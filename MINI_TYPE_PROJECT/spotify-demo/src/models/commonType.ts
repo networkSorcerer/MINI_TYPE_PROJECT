@@ -1,7 +1,8 @@
-export interface ExternalURLS {
+export interface ExternalUrls {
   spotify: string;
 }
-export interface Images {
+
+export interface Image {
   url: string;
   height: number | null;
   width: number | null;

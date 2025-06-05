@@ -1,11 +1,11 @@
 import { Artist } from "./artist";
-import { ExternalURLS, Images, Restriction } from "./commonType";
+import { ExternalUrls, Image, Restriction } from "./commonType";
 
-export interface getNewReleasesResponse {
+export interface getNewReleaseResponse {
   albums: {
     href: string;
     limit: number;
-    next: string;
+    next: string | null;
     offset: number;
     previous: string | null;
     total: number;
@@ -17,10 +17,10 @@ export interface SimplifiedAlbum {
   album_type: string;
   total_tracks: number;
   available_markets: string[];
-  external_urls: ExternalURLS;
+  external_urls: ExternalUrls;
   href: string;
   id: string;
-  images: Images[];
+  images: Image[];
   name: string;
   release_date: string;
   release_date_precision: string;
