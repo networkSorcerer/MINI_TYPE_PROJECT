@@ -6,7 +6,7 @@ const useGetNewReleases = () => {
   const clientCredentialToken = useClientCredentialToken();
   return useQuery({
     queryKey: ["new-releases"],
-    queryFn: () => {
+    queryFn: async () => {
       if (!clientCredentialToken) {
         throw new Error("No token available");
       }

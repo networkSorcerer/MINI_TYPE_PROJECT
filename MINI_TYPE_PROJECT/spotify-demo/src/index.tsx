@@ -3,13 +3,18 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import theme from "./theme";
+import { BrowserRouter } from "react-router";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import theme from "./theme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 const root = ReactDOM.createRoot(
+  // 번들은 srs밑에 있는 index 파일을 사용하기 떄문에 content로 수정.
+  // document.getElementById('root') as HTMLElement
   document.getElementById("content") as HTMLElement
 );
+
+// react query의 옵션 세팅 값
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -17,6 +22,7 @@ const queryClient = new QueryClient({
     },
   },
 });
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
