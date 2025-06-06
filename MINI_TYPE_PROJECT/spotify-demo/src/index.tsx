@@ -10,7 +10,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const root = ReactDOM.createRoot(
   document.getElementById("content") as HTMLElement
 );
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1, // 재시도 한 번 더
+    },
+  },
+});
 root.render(
   <React.StrictMode>
     <BrowserRouter>
