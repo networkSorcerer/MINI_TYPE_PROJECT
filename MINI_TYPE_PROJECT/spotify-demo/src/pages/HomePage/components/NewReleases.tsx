@@ -3,7 +3,12 @@ import React from "react";
 import useGetNewReleases from "../../../hooks/useGetNewReleases";
 
 const NewReleases = () => {
-  const { data, error, isLoading } = useGetNewReleases();
+  const {
+    data: newReleasesData,
+    error: newReleasesError,
+    isLoading: isNewReleasesLoading,
+  } = useGetNewReleases();
+  console.log("ddd", newReleasesData);
   return (
     <div>
       <Typography variant="h1" paddingTop="8px">

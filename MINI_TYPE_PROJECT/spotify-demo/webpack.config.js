@@ -76,14 +76,20 @@ module.exports = (env, argv) => {
       minimize: isProduction,
     },
     plugins: [
+      new Dotenv({
+        path: isProduction ? ".env.production" : ".env.development",
+        defaults: ".env",
+        allowEmptyValues: true,
+        systemvars: true,
+      }),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "src", "index.html"),
       }),
-      new Dotenv({
-        allowEmptyValues: true,
-        systemvars: true,
-      }),
+      // new Dotenv({
+      //   allowEmptyValues: true,
+      //   systemvars: true,
+      // }),
     ],
   };
 };
