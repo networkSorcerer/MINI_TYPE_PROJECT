@@ -1,5 +1,5 @@
 import { Avatar, Box, IconButton, Menu, MenuItem, styled, useMediaQuery } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import LoginButton from '../../common/components/LoginButton';
 import useGetCurrentUserProfile from '../../hooks/useGetCurrentUserProfile';
 
@@ -24,16 +24,30 @@ const ProfileMenuItem = styled(MenuItem)({
 });
 
 const Navbar = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('access_token');
+    window.location.reload();
+  };
   const { data: userProfile } = useGetCurrentUserProfile();
   return (
     <Box display="flex" justifyContent="flex-end" alignItems="center" height="64px">
       {userProfile ? (
         <ProfileContainer>
-          <IconButton size="small">
+          <IconButton onClick={handleMenuOpen} size="small">
             <Avatar src={userProfile.images[0]?.url} alt={userProfile.display_name} />
           </IconButton>
-          <ProfileMenu open>
-            <ProfileMenuItem>Log out</ProfileMenuItem>
+          <ProfileMenu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose} keepMounted>
+            <ProfileMenuItem onClick={logout}>Log out</ProfileMenuItem>
           </ProfileMenu>
         </ProfileContainer>
       ) : (
@@ -46,16 +60,3 @@ const Navbar = () => {
 export default Navbar;
 
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
-// {userProfile ? (
-//         <ProfileContainer>
-//           <IconButton onClick={handleMenuOpen} size="small">
-//             <Avatar src={userProfile.images[0]?.url} alt={userProfile.display_name} />
-//           </IconButton>
-//           <ProfileMenu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose} keepMounted>
-//             <ProfileMenuItem onClick={logout}>Log out</ProfileMenuItem>
-//           </ProfileMenu>
-//         </ProfileContainer>
-//       ) : (
-//         <LoginButton />
-//       )}{' '}
